@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import config from './../../config/config.js';
+import config from './../config/config.js';
 
 export const authenticate = (req, res, next) => {
    const token = req.header('Authorization')?.replace('Bearer ', '');

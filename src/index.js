@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import config from "./config/config.js";
 import { authRouter } from "./routes/auth-routes.js";
+import { cartRouter } from "./routes/cart-routes.js";
+import { itemRouter } from "./routes/item-routes.js";
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(bodyParser.json());
 
 // Router
 app.use('/api/v1', authRouter);
+app.use('/api/v1', cartRouter);
+app.use('/api/v1', itemRouter);
 
 const APP_PORT = config.APP_PORT || 3000;
 

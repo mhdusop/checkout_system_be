@@ -19,4 +19,32 @@ model User {
   username String @unique
   email    String @unique
   password String
+  cart     Cart[]
+}
+
+model Cart {
+  id     Int        @id @default(autoincrement())
+  name   String
+  userId Int
+  user   User       @relation(fields: [userId], references: [id])
+  items  CartItem[]
+}
+
+model Item {
+  id       Int        @id @default(autoincrement())
+  name     String
+  price    Int
+  quantity Int
+  carts    CartItem[]
+}
+
+model CartItem {
+  id       Int  @id @default(autoincrement())
+  cartId   Int
+  itemId   Int
+  quantity Int
+  cart     Cart @relation(fields: [cartId], references: [id])
+  item     Item @relation(fields: [itemId], references: [id])
+
+  @@unique([cartId, itemId])
 }
